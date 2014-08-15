@@ -1,0 +1,20 @@
+---
+# defaults file for apt
+apt_dependencies:
+- python-apt
+- aptitude
+
+apt_update: true
+apt_update_cache_valid_time: 3600
+
+apt_upgrade: true
+apt_upgrade_type: dist
+
+apt_clean: true
+
+apt_autoremove: true
+
+apt_install: []
+
+apt_remove: []
+apt_remove_purge: false

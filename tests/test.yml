@@ -1,0 +1,6 @@
+---
+# test file for apt
+- hosts: localhost
+  remote_user: root
+  roles:
+    - ansible-apt
