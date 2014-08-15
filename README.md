@@ -37,6 +37,10 @@ None
 
 MIT
 
+#### Author Information
+
+Mischa ter Smitten (based on work of kosssi and Ansibles)
+
 #### Feedback, bug-reports, requests, ...
 
 Are [welcome](https://github.com/Oefenweb/ansible-apt/issues)!
