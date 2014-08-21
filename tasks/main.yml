@@ -3,7 +3,7 @@
 - name: install dependencies
   apt:
     name: "{{ item }}"
-    state: present
+    state: latest
   with_items: apt_dependencies
   when: apt_dependencies
   tags: [configuration, apt, apt-dependencies]
@@ -37,7 +37,7 @@
 - name: install
   apt:
     name: "{{ item }}"
-    state: present
+    state: latest
   with_items: apt_install
   when: apt_install
   tags: [configuration, apt, apt-install]
