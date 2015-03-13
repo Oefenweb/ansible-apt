@@ -1,5 +1,18 @@
 ---
 # defaults file for apt
+apt_manage_sources_list: true
+
+# Ubuntu specific
+apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
+apt_ubuntu_universe_enable: true
+apt_ubuntu_multiverse_enable: true
+apt_ubuntu_backports_enable: true
+apt_ubuntu_partner_enable: false
+apt_ubuntu_extras_enable: false
+# Debian specific
+apt_debian_mirror: http://ftp.nl.debian.org/debian/
+apt_debian_contrib_nonfree_enable: false
+
 apt_dependencies:
 - python-apt
 - aptitude
@@ -7,7 +20,7 @@ apt_dependencies:
 apt_update: true
 apt_update_cache_valid_time: 3600
 
-apt_upgrade: true
+apt_upgrade: false
 apt_upgrade_type: dist
 
 apt_clean: true

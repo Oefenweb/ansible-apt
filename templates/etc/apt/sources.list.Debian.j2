@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+
+deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }} main
+deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }} main
+
+deb http://security.debian.org/ {{ ansible_lsb.codename }}/updates main
+deb-src http://security.debian.org/ {{ ansible_lsb.codename }}/updates main
+
+# {{ ansible_lsb.codename }}-updates, previously known as 'volatile'
+deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }}-updates main
+deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }}-updates main
+
+# Contrib packages contain DFSG-compliant software,
+# but have dependencies not in main (possibly packaged for Debian in non-free).
+# Non-free contains software that does not comply with the DFSG.
+{% if apt_debian_contrib_nonfree_enable %}
+deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }} contrib non-free
+deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }} contrib non-free
+{% endif %}

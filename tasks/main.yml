@@ -1,5 +1,15 @@
 ---
 # tasks file for apt
+- name: update configuration file - /etc/apt/sources.list
+  template:
+    src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+  when:  apt_manage_sources_list
+  tags: [configuration, apt, apt-configuration]
+
 - name: install dependencies
   apt:
     name: "{{ item }}"
