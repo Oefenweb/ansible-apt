@@ -20,7 +20,7 @@ apt_dependencies:
 apt_update: true
 apt_update_cache_valid_time: 3600
 
-apt_upgrade: false
+apt_upgrade: true
 apt_upgrade_type: dist
 
 apt_clean: true
