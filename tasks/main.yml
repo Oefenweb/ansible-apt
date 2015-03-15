@@ -10,6 +10,13 @@
   when:  apt_manage_sources_list
   tags: [configuration, apt, apt-configuration]
 
+- name: update
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ apt_update_cache_valid_time }}"
+  when: apt_update
+  tags: [configuration, apt, apt-update]
+
 - name: install dependencies
   apt:
     name: "{{ item }}"
@@ -17,13 +24,6 @@
   with_items: apt_dependencies
   when: apt_dependencies
   tags: [configuration, apt, apt-dependencies]
-
-- name: update
-  apt:
-    update_cache: yes
-    cache_valid_time: "{{ apt_update_cache_valid_time }}"
-  when: apt_update
-  tags: [configuration, apt, apt-update]
 
 - name: upgrade
   apt:

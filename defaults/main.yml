@@ -1,6 +1,6 @@
 ---
 # defaults file for apt
-apt_manage_sources_list: true
+apt_manage_sources_list: false
 
 # Ubuntu specific
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
@@ -14,8 +14,8 @@ apt_debian_mirror: http://ftp.nl.debian.org/debian/
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
-- python-apt
-- aptitude
+  - python-apt
+  - aptitude
 
 apt_update: true
 apt_update_cache_valid_time: 3600
