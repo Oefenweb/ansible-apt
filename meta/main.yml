@@ -3,7 +3,7 @@
 galaxy_info:
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
-  description: Manage packages and up(date|grade)s in Debian-like systems.
+  description: Manage packages and up(date|grade)s in Debian-like systems
   license: MIT
   min_ansible_version: 1.4
   platforms:
