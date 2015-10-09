@@ -12,7 +12,7 @@
 
 - name: update
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: "{{ apt_update_cache_valid_time }}"
   when: apt_update
   tags: [configuration, apt, apt-update]
@@ -22,25 +22,24 @@
     name: "{{ item }}"
     state: latest
   with_items: apt_dependencies
-  when: apt_dependencies
   tags: [configuration, apt, apt-dependencies]
 
 - name: upgrade
   apt:
     upgrade: "{{ apt_upgrade_type }}"
-    update_cache: yes
+    update_cache: true
   when: apt_upgrade
   tags: [configuration, apt, apt-upgrade]
 
 - name: clean
   shell: apt-get -y clean
-  changed_when: False
+  changed_when: false
   when: apt_clean
   tags: [configuration, apt, apt-clean]
 
 - name: autoremove
   shell: apt-get -y autoremove
-  changed_when: False
+  changed_when: false
   when: apt_autoremove
   tags: [configuration, apt, apt-autoremove]
 
@@ -49,7 +48,6 @@
     name: "{{ item }}"
     state: latest
   with_items: apt_install
-  when: apt_install
   tags: [configuration, apt, apt-install]
 
 - name: remove
@@ -58,5 +56,4 @@
     state: absent
     purge: "{{ 'yes' if apt_remove_purge else 'no' }}"
   with_items: apt_remove
-  when: apt_remove
   tags: [configuration, apt, apt-remove]
