@@ -1,5 +1,5 @@
----
 # defaults file for apt
+---
 apt_manage_sources_list: false
 
 # Ubuntu specific

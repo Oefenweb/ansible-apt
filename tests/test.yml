@@ -1,6 +1,8 @@
----
 # test file for apt
+---
 - hosts: localhost
   remote_user: root
   roles:
-    - {role: ansible-apt, apt_upgrade: false}
+    - ../../
+  vars:
+    apt_upgrade: false

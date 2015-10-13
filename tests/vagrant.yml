@@ -1,7 +1,7 @@
----
 # test file for apt
+---
 - hosts: all
   remote_user: vagrant
   sudo: true
   roles:
-    - apt
+    - ../../
