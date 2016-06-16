@@ -7,7 +7,7 @@
     owner: root
     group: root
     mode: 0644
-  when:  apt_manage_sources_list
+  when: apt_manage_sources_list
   tags: [configuration, apt, apt-configuration]
 
 - name: update
