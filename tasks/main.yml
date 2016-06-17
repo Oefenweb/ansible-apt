@@ -8,52 +8,76 @@
     group: root
     mode: 0644
   when: apt_manage_sources_list
-  tags: [configuration, apt, apt-configuration]
+  tags:
+    - configuration
+    - apt
+    - apt-configuration
 
 - name: update
   apt:
     update_cache: true
     cache_valid_time: "{{ apt_update_cache_valid_time }}"
   when: apt_update
-  tags: [configuration, apt, apt-update]
+  tags:
+    - configuration
+    - apt
+    - apt-update
 
 - name: install dependencies
   apt:
     name: "{{ item }}"
     state: latest
-  with_items: apt_dependencies
-  tags: [configuration, apt, apt-dependencies]
+  with_items: "{{ apt_dependencies }}"
+  tags:
+    - configuration
+    - apt
+    - apt-dependencies
 
 - name: upgrade
   apt:
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
   when: apt_upgrade
-  tags: [configuration, apt, apt-upgrade]
+  tags:
+    - configuration
+    - apt
+    - apt-upgrade
 
 - name: clean
-  shell: apt-get -y clean
+  command: apt-get -y clean
   changed_when: false
   when: apt_clean
-  tags: [configuration, apt, apt-clean]
+  tags:
+    - configuration
+    - apt
+    - apt-clean
 
 - name: autoremove
-  shell: apt-get -y autoremove
+  command: apt-get -y autoremove
   changed_when: false
   when: apt_autoremove
-  tags: [configuration, apt, apt-autoremove]
+  tags:
+    - configuration
+    - apt
+    - apt-autoremove
 
 - name: install
   apt:
     name: "{{ item }}"
     state: latest
-  with_items: apt_install
-  tags: [configuration, apt, apt-install]
+  with_items: "{{ apt_install }}"
+  tags:
+    - configuration
+    - apt
+    - apt-install
 
 - name: remove
   apt:
     name: "{{ item }}"
     state: absent
-    purge: "{{ 'yes' if apt_remove_purge else 'no' }}"
-  with_items: apt_remove
-  tags: [configuration, apt, apt-remove]
+    purge: "{{ apt_remove_purge }}"
+  with_items: "{{ apt_remove }}"
+  tags:
+    - configuration
+    - apt
+    - apt-remove
