@@ -17,7 +17,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_ubuntu_multiverse_enable`: [default: `true`]: Whether or not to enable the `multiverse` repository
 * `apt_ubuntu_backports_enable`: [default: `true`]: Whether or not to enable the `backports` repository
 * `apt_ubuntu_partner_enable`: [default: `false`]: Whether or not to enable the `partner` repository
-* `apt_ubuntu_extras_enable`: [default: `false`]: Whether or not to enable the `extras` repository
+* `apt_ubuntu_extras_enable`: [default: `false`]: Whether or not to enable the `extras` repository (only applies to < 16.04)
 * `apt_debian_mirror`: [default: `http://ftp.nl.debian.org/debian/`]: The mirror to use
 * `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` repository
 
