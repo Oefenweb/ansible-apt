@@ -13,6 +13,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 
 * `apt_manage_sources_list`: [default: `false`]: Whether or not to manage `/etc/apt/sources.list`
 * `apt_ubuntu_mirror`: [default: `mirror://mirrors.ubuntu.com/mirrors.txt`]: The mirror to use
+* `apt_src_enable`: [default: `true`]: Whether or not to enable source code repositorys
 * `apt_ubuntu_universe_enable`: [default: `true`]: Whether or not to enable the `universe` repository
 * `apt_ubuntu_multiverse_enable`: [default: `true`]: Whether or not to enable the `multiverse` repository
 * `apt_ubuntu_backports_enable`: [default: `true`]: Whether or not to enable the `backports` repository
