@@ -2,6 +2,8 @@
 ---
 apt_manage_sources_list: false
 
+apt_src_enable: true
+
 # Ubuntu specific
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
 apt_ubuntu_universe_enable: true
