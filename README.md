@@ -1,6 +1,6 @@
 ## apt
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-apt.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-apt) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-apt-blue.svg)](https://galaxy.ansible.com/list#/roles/1352)
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-apt.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-apt) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-apt-blue.svg)](https://galaxy.ansible.com/tersmitten/apt)
 
 Manage packages and up(date|grade)s in Debian-like systems.
 
@@ -30,6 +30,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_clean` [default: `true`]: Whether or not to clean
 * `apt_autoremove` [default: `true`]: Whether or not to autoremove
 * `apt_install`: [default: `[]`]: Packages to install
+* `apt_install_state`: [default: `latest`]: State of packages to install (e.g. `present`)
 * `apt_remove`: [default: `[]`]: Packages to remove
 * `apt_remove_purge` [default: `false`]: Whether or not to purge
 

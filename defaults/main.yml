@@ -30,6 +30,7 @@ apt_clean: true
 apt_autoremove: true
 
 apt_install: []
+apt_install_state: latest
 
 apt_remove: []
 apt_remove_purge: false

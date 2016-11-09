@@ -27,7 +27,7 @@
 - name: install dependencies
   apt:
     name: "{{ item }}"
-    state: latest
+    state: "{{ apt_install_state }}"
   with_items: "{{ apt_dependencies }}"
   tags:
     - configuration
@@ -65,7 +65,7 @@
 - name: install
   apt:
     name: "{{ item }}"
-    state: latest
+    state: "{{ apt_install_state }}"
   with_items: "{{ apt_install }}"
   tags:
     - configuration
