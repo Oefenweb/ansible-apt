@@ -24,6 +24,7 @@ apt_update_cache_valid_time: 3600
 
 apt_upgrade: true
 apt_upgrade_type: dist
+apt_upgrade_dpkg_options: 'force-confdef,force-confold'
 
 apt_clean: true
 

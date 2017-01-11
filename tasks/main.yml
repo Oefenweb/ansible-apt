@@ -38,6 +38,7 @@
   apt:
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
+    dpkg_options: "{{ apt_upgrade_dpkg_options }}"
   when: apt_upgrade
   tags:
     - configuration
