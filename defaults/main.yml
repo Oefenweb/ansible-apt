@@ -26,6 +26,8 @@ apt_upgrade: true
 apt_upgrade_type: dist
 apt_upgrade_dpkg_options: 'force-confdef,force-confold'
 
+apt_dpkg_configure: false
+
 apt_clean: true
 
 apt_autoremove: true
