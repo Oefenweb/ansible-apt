@@ -24,6 +24,15 @@
     - apt
     - apt-update
 
+- name: dpkg --configure
+  command: dpkg --configure -a
+  changed_when: false
+  when: apt_dpkg_configure
+  tags:
+    - configuration
+    - apt
+    - apt-dpkg-configure
+
 - name: install dependencies
   apt:
     name: "{{ item }}"
@@ -44,15 +53,6 @@
     - configuration
     - apt
     - apt-upgrade
-
-- name: dpkg --configure
-  command: dpkg --configure -a
-  changed_when: false
-  when: apt_dpkg_configure
-  tags:
-    - configuration
-    - apt
-    - apt-dpkg-configure
 
 - name: clean
   command: apt-get -y clean
