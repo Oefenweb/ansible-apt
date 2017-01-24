@@ -26,7 +26,8 @@
 
 - name: dpkg --configure
   command: dpkg --configure -a
-  changed_when: false
+  changed_when: _dpkg_configure.stdout_lines | length
+  register: _dpkg_configure
   when: apt_dpkg_configure
   tags:
     - configuration
