@@ -62,7 +62,7 @@ deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partn
 
 # # This software is not part of Ubuntu, but is offered by third-party
 # # developers who want to ship their latest software.
-{% if apt_ubuntu_extras_enable %}
+{% if apt_ubuntu_extras_enable and ansible_distribution_version | version_compare('16.04', '<') %}
 deb http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main
 {{ '# ' if not apt_src_enable else '' }}deb-src http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main
 {% endif %}
