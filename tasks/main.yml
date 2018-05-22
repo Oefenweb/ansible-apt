@@ -65,12 +65,9 @@
     - apt-clean
 
 - name: autoremove
-  shell: >
-    apt-get -y {% for dpkg_option in apt_upgrade_dpkg_options %}-o Dpkg::Options::="--{{ dpkg_option }}" {% endfor%} autoremove
-  environment:
-    DEBIAN_FRONTEND: noninteractive
-  register: _autoremove
-  changed_when: _autoremove.stdout.find('0 to remove') == -1
+  apt:
+    autoremove: true
+    dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
   when: apt_autoremove
   tags:
     - configuration
