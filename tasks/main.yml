@@ -48,7 +48,7 @@
   apt:
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
-    dpkg_options: "{{ apt_upgrade_dpkg_options }}"
+    dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
   when: apt_upgrade
   tags:
     - configuration
@@ -65,8 +65,12 @@
     - apt-clean
 
 - name: autoremove
-  command: apt-get -y autoremove
-  changed_when: false
+  shell: >
+    apt-get -y {% for dpkg_option in apt_upgrade_dpkg_options %}-o Dpkg::Options::="--{{ dpkg_option }}" {% endfor%} autoremove
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  register: _autoremove
+  changed_when: _autoremove.stdout.find('0 to remove') == -1
   when: apt_autoremove
   tags:
     - configuration
