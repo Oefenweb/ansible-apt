@@ -48,7 +48,7 @@
   apt:
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
-    dpkg_options: "{{ apt_upgrade_dpkg_options }}"
+    dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
   when: apt_upgrade
   tags:
     - configuration
@@ -65,8 +65,9 @@
     - apt-clean
 
 - name: autoremove
-  command: apt-get -y autoremove
-  changed_when: false
+  apt:
+    autoremove: true
+    dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
   when: apt_autoremove
   tags:
     - configuration
