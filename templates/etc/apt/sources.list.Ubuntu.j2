@@ -37,7 +37,7 @@ deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates multivers
 # # newer versions of some applications which may provide useful features.
 # # Also, please note that software in backports WILL NOT receive any review
 # # or updates from the Ubuntu security team.
-{% if apt_ubuntu_backports_enable %}
+{% if apt_backports_enable or apt_ubuntu_backports_enable %}
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
 {% endif %}
