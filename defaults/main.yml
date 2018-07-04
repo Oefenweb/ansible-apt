@@ -3,6 +3,7 @@
 apt_manage_sources_list: false
 
 apt_src_enable: true
+apt_backports_enable: true
 
 # Ubuntu specific
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
@@ -12,7 +13,7 @@ apt_ubuntu_backports_enable: true
 apt_ubuntu_partner_enable: false
 apt_ubuntu_extras_enable: false
 # Debian specific
-apt_debian_mirror: http://ftp.nl.debian.org/debian/
+apt_debian_mirror: http://deb.debian.org/debian/
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:

@@ -17,3 +17,12 @@ deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }}-updates main
 deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }} contrib non-free
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }} contrib non-free
 {% endif %}
+
+# # N.B. software from this repository may not have been tested as
+# # extensively as that contained in the main release, although it includes
+# # newer versions of some applications which may provide useful features.
+{% if apt_backports_enable %}
+deb {{ apt_debian_mirror }} {{ ansible_distribution_release }}-backports main contrib non-free
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }}-backports main contrib non-free
+{% endif %}
+
