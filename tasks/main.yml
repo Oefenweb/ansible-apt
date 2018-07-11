@@ -18,6 +18,7 @@
   apt:
     update_cache: true
     cache_valid_time: "{{ 0 if apt_config_updated is defined and apt_config_updated.changed else apt_update_cache_valid_time }}"
+  changed_when: false
   when: apt_update
   tags:
     - configuration
