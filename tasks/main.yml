@@ -25,7 +25,10 @@
     - apt-update
 
 - name: dpkg --configure
-  command: dpkg --configure -a
+  command: >
+    dpkg --configure -a
+  args:
+    warn: false
   changed_when: _dpkg_configure.stdout_lines | length
   register: _dpkg_configure
   when: apt_dpkg_configure
@@ -36,9 +39,8 @@
 
 - name: install dependencies
   apt:
-    name: "{{ item }}"
+    name: "{{ apt_dependencies }}"
     state: "{{ apt_install_state }}"
-  with_items: "{{ apt_dependencies }}"
   tags:
     - configuration
     - apt
@@ -56,7 +58,10 @@
     - apt-upgrade
 
 - name: clean
-  command: apt-get -y clean
+  command: >
+    apt-get -y clean
+  args:
+    warn: false
   changed_when: false
   when: apt_clean
   tags:
@@ -76,9 +81,8 @@
 
 - name: install
   apt:
-    name: "{{ item }}"
+    name: "{{ apt_install }}"
     state: "{{ apt_install_state }}"
-  with_items: "{{ apt_install }}"
   tags:
     - configuration
     - apt
@@ -86,10 +90,9 @@
 
 - name: remove
   apt:
-    name: "{{ item }}"
+    name: "{{ apt_remove }}"
     state: absent
     purge: "{{ apt_remove_purge }}"
-  with_items: "{{ apt_remove }}"
   tags:
     - configuration
     - apt

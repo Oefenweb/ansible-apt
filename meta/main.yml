@@ -1,6 +1,7 @@
 # meta file for apt
 ---
 galaxy_info:
+  role_name: apt
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
   description: Manage packages and up(date|grade)s in Debian-like systems
@@ -12,6 +13,7 @@ galaxy_info:
         - precise
         - trusty
         - xenial
+        - bionic
     - name: Debian
       versions:
         - wheezy
