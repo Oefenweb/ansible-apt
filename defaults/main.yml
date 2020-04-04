@@ -1,6 +1,7 @@
 # defaults file for apt
 ---
 apt_manage_sources_list: false
+apt_manage_config: false
 
 apt_src_enable: true
 apt_backports_enable: true
@@ -15,6 +16,8 @@ apt_ubuntu_extras_enable: false
 # Debian specific
 apt_debian_mirror: http://deb.debian.org/debian/
 apt_debian_contrib_nonfree_enable: false
+
+apt_config: {}
 
 apt_dependencies:
   - python-apt

@@ -1,0 +1,25 @@
+#jinja2: trim_blocks: "true", lstrip_blocks: "true"
+{{ ansible_managed | comment('c') }}
+{% macro format_value(key, value) %}
+  {%- if value is list %}
+{{ key }} {
+    {% for item in value %}
+  "{{ item }}";
+    {% endfor %}
+};
+  {%- elif value is mapping %}
+{{ key }} {
+    {% for k, v in value.items() %}
+  {{ format_value(k, v) | indent(2) }}
+    {% endfor %}
+};
+  {%- elif value is boolean %}
+{{ key }} "{{ value | ternary('true', 'false') }}";
+  {%- else %}
+{{ key }} "{{ value }}";
+  {%- endif %}
+{% endmacro %}
+
+{% for key, value in apt_config.items() %}
+{{ format_value(key, value) }}
+{% endfor %}

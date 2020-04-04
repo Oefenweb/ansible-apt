@@ -23,6 +23,9 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_debian_mirror`: [default: `http://deb.debian.org/debian/`]: The mirror to use
 * `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` repository
 
+* `apt_manage_sources_list`: [default: `false`]: Whether or not to manage the apt configuration file `/etc/apt/apt.conf`
+* `apt_config`: [default: `{}`]: Configuration entries for `/etc/apt/apt.conf` (key-value pairs, possibly nested). See [example section](#example) for example usage.
+
 * `apt_dependencies`: [default: `[python-apt, aptitude]`]: General dependencies for apt modules to work
 * `apt_update`: [default: `true`]: Whether or not to update
 * `apt_update_cache_valid_time`: [default: `3600`]: Number of seconds the apt cache stays valid
@@ -46,6 +49,27 @@ None
 ```yaml
 ---
 - hosts: all
+  vars:
+    # install packages
+    apt_install:
+      - git
+      - htop
+
+    # remove packages
+    apt_autoremove: true
+    apt_remove_purge: true
+    apt_remove:
+      - plymouth
+
+    # manage apt configuration
+    apt_manage_config: true
+    apt_config:
+      APT:
+        Install-Recommends: false
+        Install-Suggests: false
+        Get:
+          Fix-Broken: true
+
   roles:
     - apt
 ```
