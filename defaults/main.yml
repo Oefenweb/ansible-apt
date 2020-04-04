@@ -17,7 +17,7 @@ apt_debian_mirror: http://deb.debian.org/debian/
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
-  - python-apt
+  - python3-apt
   - aptitude
 
 apt_update: true
