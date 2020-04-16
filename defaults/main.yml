@@ -7,6 +7,7 @@ apt_backports_enable: true
 
 # Ubuntu specific
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
+apt_ubuntu_security_mirror: http://security.ubuntu.com/ubuntu
 apt_ubuntu_universe_enable: true
 apt_ubuntu_multiverse_enable: true
 apt_ubuntu_backports_enable: true
@@ -14,6 +15,7 @@ apt_ubuntu_partner_enable: false
 apt_ubuntu_extras_enable: false
 # Debian specific
 apt_debian_mirror: http://deb.debian.org/debian/
+apt_debian_security_mirror: http://security.debian.org/
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
