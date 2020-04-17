@@ -42,15 +42,15 @@ deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main re
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
 {% endif %}
 
-deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security main restricted
-{{ '# ' if not apt_src_enable else '' }}deb-src http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security main restricted
+deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main restricted
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main restricted
 {% if apt_ubuntu_universe_enable %}
-deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security universe
-{{ '# ' if not apt_src_enable else '' }}deb-src http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security universe
+deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security universe
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security universe
 {% endif %}
 {% if apt_ubuntu_multiverse_enable %}
-deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security multiverse
-{{ '# ' if not apt_src_enable else '' }}deb-src http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security multiverse
+deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security multiverse
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security multiverse
 {% endif %}
 
 # # This software is not part of Ubuntu, but is offered by Canonical and the

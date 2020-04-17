@@ -3,8 +3,8 @@
 deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }} main
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }} main
 
-deb http://security.debian.org/ {{ ansible_lsb.codename }}/updates main
-{{ '# ' if not apt_src_enable else '' }}deb-src http://security.debian.org/ {{ ansible_lsb.codename }}/updates main
+deb {{ apt_debian_security_mirror }} {{ ansible_lsb.codename }}/updates main
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_security_mirror }} {{ ansible_lsb.codename }}/updates main
 
 # {{ ansible_lsb.codename }}-updates, previously known as 'volatile'
 deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }}-updates main
