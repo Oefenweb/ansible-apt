@@ -19,7 +19,7 @@ apt_debian_security_mirror: http://security.debian.org/
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
-  - python-apt
+  - "{{ (ansible_distribution == 'Debian' and ansible_distribution_version is version('8', '<')) | ternary('python-apt', 'python3-apt') }}"
   - aptitude
 
 apt_update: true

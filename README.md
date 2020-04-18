@@ -1,12 +1,13 @@
 ## apt
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-apt.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-apt) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-apt-blue.svg)](https://galaxy.ansible.com/Oefenweb/apt)
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-apt.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-apt)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-apt-blue.svg)](https://galaxy.ansible.com/Oefenweb/apt)
 
 Manage packages and up(date|grade)s in Debian-like systems.
 
 #### Requirements
 
-* `python-apt`
+* `python3-apt` (or `python-apt` for Debian 7)
 * `aptitude`
 
 #### Variables
