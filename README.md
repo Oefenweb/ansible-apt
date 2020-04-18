@@ -26,7 +26,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_debian_security_mirror`: [default: `http://security.debian.org/`]: The security-mirror to use
 * `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` repository
 
-* `apt_dependencies`: [default: `[python-apt, aptitude]`]: General dependencies for apt modules to work
+* `apt_dependencies`: [default: `[python3-apt, aptitude]`]: General dependencies for apt modules to work
 * `apt_update`: [default: `true`]: Whether or not to update
 * `apt_update_cache_valid_time`: [default: `3600`]: Number of seconds the apt cache stays valid
 * `apt_upgrade`: [default: `true`]: Whether or not to upgrade
