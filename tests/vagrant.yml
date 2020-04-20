@@ -12,3 +12,12 @@
 #    apt_ubuntu_extras_enable: true
 #
 #    apt_dpkg_configure: true
+#    apt_etc_apt_apt_conf:
+#      - |
+#        APT {
+#          Install-Recommends "false";
+#          Install-Suggests "false";
+#          Get {
+#            Fix-Broken "true";
+#          };
+#        };

@@ -40,6 +40,8 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_remove`: [default: `[]`]: Packages to remove
 * `apt_remove_purge`: [default: `false`]: Whether or not to purge
 
+* `apt_etc_apt_apt_conf`: [default: `[]`]: List of lines to be added to `/etc/apt/apt.conf`
+
 ## Dependencies
 
 None
@@ -51,6 +53,16 @@ None
 - hosts: all
   roles:
     - apt
+  vars:
+    apt_etc_apt_apt_conf:
+      - |
+        APT {
+          Install-Recommends "false";
+          Install-Suggests "false";
+          Get {
+            Fix-Broken "true";
+          };
+        };
 ```
 
 #### License

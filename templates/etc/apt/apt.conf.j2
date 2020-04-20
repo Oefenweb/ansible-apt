@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for line in apt_etc_apt_apt_conf | default([]) %}
+{{ line }}
+{% endfor %}

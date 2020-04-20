@@ -42,3 +42,5 @@ apt_install_state: latest
 
 apt_remove: []
 apt_remove_purge: false
+
+apt_etc_apt_apt_conf: []
