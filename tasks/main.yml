@@ -82,16 +82,6 @@
     - apt
     - apt-clean
 
-- name: autoremove
-  apt:
-    autoremove: true
-    dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
-  when: apt_autoremove
-  tags:
-    - configuration
-    - apt
-    - apt-autoremove
-
 - name: install
   apt:
     name: "{{ apt_install }}"
@@ -110,3 +100,13 @@
     - configuration
     - apt
     - apt-remove
+
+- name: autoremove
+  apt:
+    autoremove: true
+    dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
+  when: apt_autoremove
+  tags:
+    - configuration
+    - apt
+    - apt-autoremove
