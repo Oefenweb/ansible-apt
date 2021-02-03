@@ -31,7 +31,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_update_cache_valid_time`: [default: `3600`]: Number of seconds the apt cache stays valid
 * `apt_upgrade`: [default: `true`]: Whether or not to upgrade
 * `apt_upgrade_type`: [default: `dist`]: If yes or safe, performs an aptitude safe-upgrade. If full, performs an aptitude full-upgrade. If dist, performs an apt-get dist-upgrade
-* `apt_upgrade_dpkg_options`: [default: `'force-confdef,force-confold'`]: Add `dpkg` options to `apt` command
+* `apt_upgrade_dpkg_options`: [default: `['force-confdef', 'force-confold']`]: Add `dpkg` options to `apt` command
 * `apt_clean`: [default: `true`]: Whether or not to clean
 * `apt_dpkg_configure`: [default: `false`]: Whether or not to run `dpkg --configure -a`
 * `apt_autoremove`: [default: `true`]: Whether or not to autoremove

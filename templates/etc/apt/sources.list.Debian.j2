@@ -1,21 +1,21 @@
 # {{ ansible_managed }}
 
-deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }} main
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }} main
+deb {{ apt_debian_mirror }} {{ ansible_distribution_release }} main
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }} main
 
-deb {{ apt_debian_security_mirror }} {{ ansible_lsb.codename }}/updates main
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_security_mirror }} {{ ansible_lsb.codename }}/updates main
+deb {{ apt_debian_security_mirror }} {{ ansible_distribution_release }}/updates main
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_security_mirror }} {{ ansible_distribution_release }}/updates main
 
-# {{ ansible_lsb.codename }}-updates, previously known as 'volatile'
-deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }}-updates main
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }}-updates main
+# {{ ansible_distribution_release }}-updates, previously known as 'volatile'
+deb {{ apt_debian_mirror }} {{ ansible_distribution_release }}-updates main
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }}-updates main
 
 # Contrib packages contain DFSG-compliant software,
 # but have dependencies not in main (possibly packaged for Debian in non-free).
 # Non-free contains software that does not comply with the DFSG.
 {% if apt_debian_contrib_nonfree_enable %}
-deb {{ apt_debian_mirror }} {{ ansible_lsb.codename }} contrib non-free
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_lsb.codename }} contrib non-free
+deb {{ apt_debian_mirror }} {{ ansible_distribution_release }} contrib non-free
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }} contrib non-free
 {% endif %}
 
 # # N.B. software from this repository may not have been tested as
