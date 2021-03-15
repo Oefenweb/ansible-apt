@@ -1,4 +1,4 @@
-# tasks file for apt
+# tasks file
 ---
 - name: update configuration file - /etc/apt/sources.list
   template:

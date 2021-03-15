@@ -1,6 +1,7 @@
-# meta file for apt
+# meta file
 ---
 galaxy_info:
+  namespace: oefenweb
   role_name: apt
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
