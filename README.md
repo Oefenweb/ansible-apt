@@ -1,6 +1,6 @@
 ## apt
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-apt.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-apt)
+[![CI](https://github.com/Oefenweb/ansible-apt/workflows/CI/badge.svg)](https://github.com/Oefenweb/ansible-apt/actions?query=workflow%3ACI)
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-apt-blue.svg)](https://galaxy.ansible.com/Oefenweb/apt)
 
 Manage packages and up(date|grade)s in Debian-like systems.
