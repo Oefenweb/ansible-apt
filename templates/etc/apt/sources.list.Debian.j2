@@ -1,28 +1,43 @@
 # {{ ansible_managed }}
 
+{% if ansible_distribution_major_version  is version('11', '>=') %}
+{% set security_suffix = '-security' %}
+{% else %}
+{% set security_suffix = '/update' %}
+{% endif %}
+
 deb {{ apt_debian_mirror }} {{ ansible_distribution_release }} main
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }} main
 
-deb {{ apt_debian_security_mirror }} {{ ansible_distribution_release }}/updates main
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_security_mirror }} {{ ansible_distribution_release }}/updates main
+deb {{ apt_debian_security_mirror }}debian-security {{ ansible_distribution_release }}{{security_suffix}} main
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_security_mirror }}debian-security {{ ansible_distribution_release }}{{security_suffix}} main
 
 # {{ ansible_distribution_release }}-updates, previously known as 'volatile'
 deb {{ apt_debian_mirror }} {{ ansible_distribution_release }}-updates main
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }}-updates main
 
+
+{% if apt_debian_contrib_nonfree_enable %}
 # Contrib packages contain DFSG-compliant software,
 # but have dependencies not in main (possibly packaged for Debian in non-free).
 # Non-free contains software that does not comply with the DFSG.
-{% if apt_debian_contrib_nonfree_enable %}
+
 deb {{ apt_debian_mirror }} {{ ansible_distribution_release }} contrib non-free
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }} contrib non-free
+
+deb {{ apt_debian_security_mirror }}debian-security {{ ansible_distribution_release }}{{security_suffix}} contrib non-free
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_security_mirror }}debian-security {{ ansible_distribution_release }}{{security_suffix}} contrib non-free
+
+# {{ ansible_distribution_release }}-updates, previously known as 'volatile'
+deb {{ apt_debian_mirror }} {{ ansible_distribution_release }}-updates contrib non-free
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }}-updates contrib non-free
 {% endif %}
 
+
+{% if apt_backports_enable %}
 # # N.B. software from this repository may not have been tested as
 # # extensively as that contained in the main release, although it includes
 # # newer versions of some applications which may provide useful features.
-{% if apt_backports_enable %}
 deb {{ apt_debian_mirror }} {{ ansible_distribution_release }}-backports main contrib non-free
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }}-backports main contrib non-free
 {% endif %}
-
