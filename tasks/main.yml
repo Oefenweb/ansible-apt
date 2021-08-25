@@ -54,6 +54,7 @@
   apt:
     name: "{{ apt_dependencies }}"
     state: "{{ apt_install_state }}"
+  when: apt_dependencies | length > 0
   tags:
     - configuration
     - apt
@@ -86,6 +87,7 @@
   apt:
     name: "{{ apt_install }}"
     state: "{{ apt_install_state }}"
+  when: apt_install | length > 0
   tags:
     - configuration
     - apt
@@ -96,6 +98,7 @@
     name: "{{ apt_remove }}"
     state: absent
     purge: "{{ apt_remove_purge }}"
+  when: apt_remove | length > 0
   tags:
     - configuration
     - apt
