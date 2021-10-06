@@ -46,6 +46,7 @@ jobs:
             ansible-version: '<2.10'
           - distro: debian9
           - distro: debian10
+          - distro: debian11
           - distro: ubuntu1604
             ansible-version: '>=2.8, <2.9'
           - distro: ubuntu1604
