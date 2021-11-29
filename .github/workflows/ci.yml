@@ -51,10 +51,6 @@ jobs:
           - distro: ubuntu1604
             ansible-version: '>=2.10, <2.11'
           - distro: ubuntu1604
-            ansible-version: '>=2.11, <2.12'
-          - distro: ubuntu1604
-            ansible-version: '>=2.12, <2.13'
-          - distro: ubuntu1604
           - distro: ubuntu1804
           - distro: ubuntu2004
 
