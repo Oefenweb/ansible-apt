@@ -27,6 +27,18 @@
     - apt
     - apt-configuration
 
+- name: ensure directory exists - /var/lib/apt/lists/
+  file:
+    path: /var/lib/apt/lists/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - configuration
+    - apt
+    - apt-update
+
 - name: update
   apt:
     update_cache: true
