@@ -21,7 +21,7 @@
     owner: root
     group: root
     mode: 0644
-  when: apt_etc_apt_apt_conf | count > 0
+  when: apt_etc_apt_apt_conf | length > 0
   tags:
     - configuration
     - apt
@@ -54,7 +54,7 @@
     dpkg --configure -a
   args:
     warn: false
-  changed_when: _dpkg_configure.stdout_lines | length
+  changed_when: _dpkg_configure.stdout_lines | length > 0
   register: _dpkg_configure
   when: apt_dpkg_configure
   tags:
