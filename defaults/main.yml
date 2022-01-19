@@ -44,3 +44,4 @@ apt_remove: []
 apt_remove_purge: false
 
 apt_etc_apt_apt_conf: []
+apt_etc_apt_apt_conf_d_files_absent: []

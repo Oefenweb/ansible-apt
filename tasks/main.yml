@@ -27,6 +27,16 @@
     - apt
     - apt-configuration
 
+- name: remove configuration files - /etc/apt/apt.conf.d/*
+  file:
+    path: "/etc/apt/apt.conf.d/{{ item }}"
+    state: absent
+  with_items: "{{ apt_etc_apt_apt_conf_d_files_absent }}"
+  tags:
+    - configuration
+    - apt
+    - apt-configuration
+
 - name: ensure directory exists - /var/lib/apt/lists/
   file:
     path: /var/lib/apt/lists/
