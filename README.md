@@ -41,6 +41,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_remove_purge`: [default: `false`]: Whether or not to purge
 
 * `apt_etc_apt_apt_conf`: [default: `[]`]: List of lines to be added to `/etc/apt/apt.conf`
+* `apt_etc_apt_apt_conf_d_files_absent`: [default: `[]`]: List of files to be removed from `/etc/apt/apt.conf.d`
 
 ## Dependencies
 
@@ -63,6 +64,8 @@ None
             Fix-Broken "true";
           };
         };
+    apt_etc_apt_apt_conf_d_files_absent:
+      - 20auto-upgrades
 ```
 
 #### License
