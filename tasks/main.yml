@@ -1,7 +1,7 @@
 # tasks file
 ---
 - name: update configuration file - /etc/apt/sources.list
-  template:
+  ansible.builtin.template:
     src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
     dest: /etc/apt/sources.list
     owner: root
@@ -15,7 +15,7 @@
     - apt-configuration
 
 - name: update configuration file - /etc/apt/apt.conf
-  template:
+  ansible.builtin.template:
     src: "{{ apt_apt_conf_file.lstrip('/') }}.j2"
     dest: "{{ apt_apt_conf_file }}"
     owner: root
@@ -28,7 +28,7 @@
     - apt-configuration
 
 - name: remove configuration files - /etc/apt/apt.conf.d/*
-  file:
+  ansible.builtin.file:
     path: "/etc/apt/apt.conf.d/{{ item }}"
     state: absent
   with_items: "{{ apt_etc_apt_apt_conf_d_files_absent }}"
@@ -38,7 +38,7 @@
     - apt-configuration
 
 - name: ensure directory exists - /var/lib/apt/lists/
-  file:
+  ansible.builtin.file:
     path: /var/lib/apt/lists/
     state: directory
     owner: root
@@ -50,7 +50,7 @@
     - apt-update
 
 - name: update
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: "{{ 0 if apt_config_updated is defined and apt_config_updated.changed else apt_update_cache_valid_time }}"
   when: apt_update
@@ -60,7 +60,7 @@
     - apt-update
 
 - name: dpkg --configure
-  command: >
+  ansible.builtin.command: >
     dpkg --configure -a
   args:
     warn: false
@@ -73,7 +73,7 @@
     - apt-dpkg-configure
 
 - name: install dependencies
-  apt:
+  ansible.builtin.apt:
     name: "{{ apt_dependencies }}"
     state: "{{ apt_install_state }}"
   tags:
@@ -82,7 +82,7 @@
     - apt-dependencies
 
 - name: upgrade
-  apt:
+  ansible.builtin.apt:
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
     dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
@@ -93,7 +93,7 @@
     - apt-upgrade
 
 - name: clean
-  command: >
+  ansible.builtin.command: >
     apt-get -y clean
   args:
     warn: false
@@ -105,7 +105,7 @@
     - apt-clean
 
 - name: install
-  apt:
+  ansible.builtin.apt:
     name: "{{ apt_install }}"
     state: "{{ apt_install_state }}"
   tags:
@@ -114,7 +114,7 @@
     - apt-install
 
 - name: remove
-  apt:
+  ansible.builtin.apt:
     name: "{{ apt_remove }}"
     state: absent
     purge: "{{ apt_remove_purge }}"
@@ -124,7 +124,7 @@
     - apt-remove
 
 - name: autoremove
-  apt:
+  ansible.builtin.apt:
     autoremove: true
     dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
   when: apt_autoremove
