@@ -1,9 +1,8 @@
 # meta file
 ---
 galaxy_info:
-  namespace: oefenweb
+  author: oefenweb
   role_name: apt
-  author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
   description: Manage packages and up(date|grade)s in Debian-like systems
   license: MIT
