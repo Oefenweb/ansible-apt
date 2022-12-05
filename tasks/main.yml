@@ -59,11 +59,9 @@
     - apt
     - apt-update
 
-- name: dpkg --configure
+- name: dpkg --configure  # noqa command-instead-of-module
   ansible.builtin.command: >
     dpkg --configure -a
-  args:
-    warn: false
   changed_when: _dpkg_configure.stdout_lines | length > 0
   register: _dpkg_configure
   when: apt_dpkg_configure
@@ -92,11 +90,9 @@
     - apt
     - apt-upgrade
 
-- name: clean
+- name: clean  # noqa command-instead-of-module
   ansible.builtin.command: >
     apt-get -y clean
-  args:
-    warn: false
   changed_when: false
   when: apt_clean
   tags:
