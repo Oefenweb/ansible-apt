@@ -14,7 +14,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 
 * `apt_manage_sources_list`: [default: `false`]: Whether or not to manage `/etc/apt/sources.list`
 * `apt_ubuntu_mirror`: [default: `mirror://mirrors.ubuntu.com/mirrors.txt`]: The mirror to use
-* `apt_ubuntu_security_mirror`: [default: `http://security.ubuntu.com/ubuntu`]: The security-mirror to use
+* `apt_ubuntu_security_mirror`: [default: `https://security.ubuntu.com/ubuntu`]: The security-mirror to use
 * `apt_src_enable`: [default: `true`]: Whether or not to enable source code repositories
 * `apt_backports_enable`: [default: `true`]: Whether or not to enable the `backports` repository
 * `apt_ubuntu_universe_enable`: [default: `true`]: Whether or not to enable the `universe` repository
@@ -22,8 +22,8 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_ubuntu_backports_enable`: [default: `true`]: Whether or not to enable the `backports` repository [deprecated in favour of `apt_backports_enable`]
 * `apt_ubuntu_partner_enable`: [default: `false`]: Whether or not to enable the `partner` repository
 * `apt_ubuntu_extras_enable`: [default: `false`]: Whether or not to enable the `extras` repository (only applies to < 16.04)
-* `apt_debian_mirror`: [default: `http://deb.debian.org/debian/`]: The mirror to use
-* `apt_debian_security_mirror`: [default: `http://security.debian.org/`]: The security-mirror to use
+* `apt_debian_mirror`: [default: `https://deb.debian.org/debian/`]: The mirror to use
+* `apt_debian_security_mirror`: [default: `https://security.debian.org/`]: The security-mirror to use
 * `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` repository
 
 * `apt_dependencies`: [default: `[python3-apt, aptitude]`]: General dependencies for apt modules to work
