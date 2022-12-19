@@ -8,7 +8,7 @@
     group: root
     mode: 0644
   register: apt_config_updated
-  when: apt_manage_sources_list
+  when: apt_manage_sources_list | bool
   tags:
     - configuration
     - apt
@@ -53,7 +53,7 @@
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: "{{ 0 if apt_config_updated is defined and apt_config_updated.changed else apt_update_cache_valid_time }}"
-  when: apt_update
+  when: apt_update | bool
   tags:
     - configuration
     - apt
@@ -66,7 +66,7 @@
     warn: false
   changed_when: _dpkg_configure.stdout_lines | length > 0
   register: _dpkg_configure
-  when: apt_dpkg_configure
+  when: apt_dpkg_configure | bool
   tags:
     - configuration
     - apt
@@ -86,7 +86,7 @@
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
     dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
-  when: apt_upgrade
+  when: apt_upgrade | bool
   tags:
     - configuration
     - apt
@@ -98,7 +98,7 @@
   args:
     warn: false
   changed_when: false
-  when: apt_clean
+  when: apt_clean | bool
   tags:
     - configuration
     - apt
@@ -127,7 +127,7 @@
   ansible.builtin.apt:
     autoremove: true
     dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
-  when: apt_autoremove
+  when: apt_autoremove | bool
   tags:
     - configuration
     - apt

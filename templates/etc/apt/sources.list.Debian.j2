@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 deb {{ apt_debian_mirror }} {{ ansible_distribution_release }} main
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_debian_mirror }} {{ ansible_distribution_release }} main
