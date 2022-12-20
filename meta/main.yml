@@ -18,6 +18,7 @@ galaxy_info:
         - jessie
         - stretch
         - buster
+        - bullseye
   galaxy_tags:
     - system
     - packaging

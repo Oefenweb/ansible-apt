@@ -8,7 +8,7 @@
     group: root
     mode: 0644
   register: apt_config_updated
-  when: apt_manage_sources_list
+  when: apt_manage_sources_list | bool
   tags:
     - configuration
     - apt
@@ -53,7 +53,7 @@
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: "{{ 0 if apt_config_updated is defined and apt_config_updated.changed else apt_update_cache_valid_time }}"
-  when: apt_update
+  when: apt_update | bool
   tags:
     - configuration
     - apt
@@ -64,13 +64,13 @@
     dpkg --configure -a
   changed_when: _dpkg_configure.stdout_lines | length > 0
   register: _dpkg_configure
-  when: apt_dpkg_configure
+  when: apt_dpkg_configure | bool
   tags:
     - configuration
     - apt
     - apt-dpkg-configure
 
-- name: install dependencies
+- name: install dependencies  # noqa args[module]
   ansible.builtin.apt:
     name: "{{ apt_dependencies }}"
     state: "{{ apt_install_state }}"
@@ -79,12 +79,12 @@
     - apt
     - apt-dependencies
 
-- name: upgrade
+- name: upgrade  # noqa args[module]
   ansible.builtin.apt:
     upgrade: "{{ apt_upgrade_type }}"
     update_cache: true
     dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
-  when: apt_upgrade
+  when: apt_upgrade | bool
   tags:
     - configuration
     - apt
@@ -94,13 +94,13 @@
   ansible.builtin.command: >
     apt-get -y clean
   changed_when: false
-  when: apt_clean
+  when: apt_clean | bool
   tags:
     - configuration
     - apt
     - apt-clean
 
-- name: install
+- name: install  # noqa args[module]
   ansible.builtin.apt:
     name: "{{ apt_install }}"
     state: "{{ apt_install_state }}"
@@ -109,7 +109,7 @@
     - apt
     - apt-install
 
-- name: remove
+- name: remove  # noqa args[module]
   ansible.builtin.apt:
     name: "{{ apt_remove }}"
     state: absent
@@ -119,11 +119,11 @@
     - apt
     - apt-remove
 
-- name: autoremove
+- name: autoremove  # noqa args[module]
   ansible.builtin.apt:
     autoremove: true
     dpkg_options: "{{ apt_upgrade_dpkg_options | join(',') }}"
-  when: apt_autoremove
+  when: apt_autoremove | bool
   tags:
     - configuration
     - apt
