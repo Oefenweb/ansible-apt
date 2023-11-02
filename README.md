@@ -53,7 +53,7 @@ None
 ---
 - hosts: all
   roles:
-    - apt
+    - oefenweb.apt
   vars:
     apt_etc_apt_apt_conf:
       - |
