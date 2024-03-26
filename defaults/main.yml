@@ -7,15 +7,15 @@ apt_backports_enable: true
 
 # Ubuntu specific
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
-apt_ubuntu_security_mirror: http://security.ubuntu.com/ubuntu
+apt_ubuntu_security_mirror: https://security.ubuntu.com/ubuntu
 apt_ubuntu_universe_enable: true
 apt_ubuntu_multiverse_enable: true
 apt_ubuntu_backports_enable: true
 apt_ubuntu_partner_enable: false
 apt_ubuntu_extras_enable: false
 # Debian specific
-apt_debian_mirror: http://deb.debian.org/debian/
-apt_debian_security_mirror: "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '<=')) | ternary('http://security.debian.org/', 'http://security.debian.org/debian-security') }}"
+apt_debian_mirror: https://deb.debian.org/debian/
+apt_debian_security_mirror: "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '<=')) | ternary('https://security.debian.org/', 'https://security.debian.org/debian-security') }}"
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
