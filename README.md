@@ -24,7 +24,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_ubuntu_extras_enable`: [default: `false`]: Whether or not to enable the `extras` repository (only applies to < 16.04)
 * `apt_debian_mirror`: [default: `http://deb.debian.org/debian/`]: The mirror to use
 * `apt_debian_security_mirror`: [default: `http://security.debian.org/`]: The security-mirror to use
-* `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` repository
+* `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` `non-free-firmware` repository
 
 * `apt_dependencies`: [default: `[python3-apt, aptitude]`]: General dependencies for apt modules to work
 * `apt_update`: [default: `true`]: Whether or not to update
