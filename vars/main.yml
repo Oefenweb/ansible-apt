@@ -1,4 +1,8 @@
 # vars file
 ---
+apt_dependencies_pre:
+  - software-properties-common
+  - dirmngr
+  - apt-transport-https
 apt_apt_conf_file: /etc/apt/apt.conf
 apt_debian_security_mirror_suffix: "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '<=')) | ternary('/updates', '-security') }}"

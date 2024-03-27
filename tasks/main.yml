@@ -1,18 +1,27 @@
 # tasks file
 ---
-- name: update configuration file - /etc/apt/sources.list
-  ansible.builtin.template:
-    src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
-    dest: /etc/apt/sources.list
-    owner: root
-    group: root
-    mode: 0644
-  register: apt_config_updated
+- name: manage sources.list
   when: apt_manage_sources_list | bool
   tags:
     - configuration
     - apt
     - apt-configuration
+  block:
+    - name: install dependencies (pre)
+      ansible.builtin.apt:
+        name: "{{ apt_dependencies_pre }}"
+        state: "{{ apt_install_state | default('latest') }}"
+        update_cache: true
+        cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+
+    - name: update configuration file - /etc/apt/sources.list
+      ansible.builtin.template:
+        src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
+        dest: /etc/apt/sources.list
+        owner: root
+        group: root
+        mode: 0644
+      register: _apt_config_updated
 
 - name: update configuration file - /etc/apt/apt.conf
   ansible.builtin.template:
@@ -51,7 +60,7 @@
 - name: update
   ansible.builtin.apt:
     update_cache: true
-    cache_valid_time: "{{ 0 if apt_config_updated is defined and apt_config_updated.changed else apt_update_cache_valid_time }}"
+    cache_valid_time: "{{ 0 if _apt_config_updated is defined and _apt_config_updated.changed else apt_update_cache_valid_time }}"
   when: apt_update | bool
   tags:
     - configuration

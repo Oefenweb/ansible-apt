@@ -1,6 +1,6 @@
 {{ ansible_managed | comment }}
 
-# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+# See https://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 # newer versions of the distribution.
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main restricted
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main restricted
@@ -13,7 +13,7 @@ deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates main rest
 # # N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 # # team. Also, please note that software in universe WILL NOT receive any
 # # review or updates from the Ubuntu security team.
-{% if apt_ubuntu_universe_enable %}
+{% if apt_ubuntu_universe_enable | bool %}
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} universe
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} universe
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates universe
@@ -25,7 +25,7 @@ deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates universe
 # # your rights to use the software. Also, please note that software in
 # # multiverse WILL NOT receive any review or updates from the Ubuntu
 # # security team.
-{% if apt_ubuntu_multiverse_enable %}
+{% if apt_ubuntu_multiverse_enable | bool %}
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} multiverse
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} multiverse
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates multiverse
@@ -37,32 +37,32 @@ deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates multivers
 # # newer versions of some applications which may provide useful features.
 # # Also, please note that software in backports WILL NOT receive any review
 # # or updates from the Ubuntu security team.
-{% if apt_backports_enable or apt_ubuntu_backports_enable %}
+{% if apt_backports_enable or apt_ubuntu_backports_enable | bool %}
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
 {% endif %}
 
 deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main restricted
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main restricted
-{% if apt_ubuntu_universe_enable %}
+{% if apt_ubuntu_universe_enable | bool %}
 deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security universe
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security universe
 {% endif %}
-{% if apt_ubuntu_multiverse_enable %}
+{% if apt_ubuntu_multiverse_enable | bool %}
 deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security multiverse
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security multiverse
 {% endif %}
 
 # # This software is not part of Ubuntu, but is offered by Canonical and the
 # # respective vendors as a service to Ubuntu users.
-{% if apt_ubuntu_partner_enable %}
+{% if apt_ubuntu_partner_enable | bool %}
 deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner
 {{ '# ' if not apt_src_enable else '' }}deb-src http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner
 {% endif %}
 
 # # This software is not part of Ubuntu, but is offered by third-party
 # # developers who want to ship their latest software.
-{% if apt_ubuntu_extras_enable and ansible_distribution_version is version('16.04', '<') %}
+{% if apt_ubuntu_extras_enable | bool and ansible_distribution_version is version('16.04', '<') %}
 deb http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main
 {{ '# ' if not apt_src_enable else '' }}deb-src http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main
 {% endif %}

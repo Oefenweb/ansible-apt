@@ -12,33 +12,33 @@ Manage packages and up(date|grade)s in Debian-like systems.
 
 #### Variables
 
-* `apt_manage_sources_list`: [default: `false`]: Whether or not to manage `/etc/apt/sources.list`
+* `apt_manage_sources_list`: [default: `false`]: Whether to manage `/etc/apt/sources.list`
 * `apt_ubuntu_mirror`: [default: `mirror://mirrors.ubuntu.com/mirrors.txt`]: The mirror to use
-* `apt_ubuntu_security_mirror`: [default: `http://security.ubuntu.com/ubuntu`]: The security-mirror to use
-* `apt_src_enable`: [default: `true`]: Whether or not to enable source code repositories
-* `apt_backports_enable`: [default: `true`]: Whether or not to enable the `backports` repository
-* `apt_ubuntu_universe_enable`: [default: `true`]: Whether or not to enable the `universe` repository
-* `apt_ubuntu_multiverse_enable`: [default: `true`]: Whether or not to enable the `multiverse` repository
-* `apt_ubuntu_backports_enable`: [default: `true`]: Whether or not to enable the `backports` repository [deprecated in favour of `apt_backports_enable`]
-* `apt_ubuntu_partner_enable`: [default: `false`]: Whether or not to enable the `partner` repository
-* `apt_ubuntu_extras_enable`: [default: `false`]: Whether or not to enable the `extras` repository (only applies to < 16.04)
-* `apt_debian_mirror`: [default: `http://deb.debian.org/debian/`]: The mirror to use
-* `apt_debian_security_mirror`: [default: `http://security.debian.org/`]: The security-mirror to use
-* `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether or not to enable the `contrib` `non-free` repository
+* `apt_ubuntu_security_mirror`: [default: `https://security.ubuntu.com/ubuntu`]: The security-mirror to use
+* `apt_src_enable`: [default: `true`]: Whether to enable source code repositories
+* `apt_backports_enable`: [default: `true`]: Whether to enable the `backports` repository
+* `apt_ubuntu_universe_enable`: [default: `true`]: Whether to enable the `universe` repository
+* `apt_ubuntu_multiverse_enable`: [default: `true`]: Whether to enable the `multiverse` repository
+* `apt_ubuntu_backports_enable`: [default: `true`]: Whether to enable the `backports` repository [deprecated in favour of `apt_backports_enable`]
+* `apt_ubuntu_partner_enable`: [default: `false`]: Whether to enable the `partner` repository
+* `apt_ubuntu_extras_enable`: [default: `false`]: Whether to enable the `extras` repository (only applies to < 16.04)
+* `apt_debian_mirror`: [default: `https://deb.debian.org/debian/`]: The mirror to use
+* `apt_debian_security_mirror`: [default: `https://security.debian.org/`]: The security-mirror to use
+* `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether to enable the `contrib` `non-free` `non-free-firmware` repository
 
 * `apt_dependencies`: [default: `[python3-apt, aptitude]`]: General dependencies for apt modules to work
-* `apt_update`: [default: `true`]: Whether or not to update
+* `apt_update`: [default: `true`]: Whether to update
 * `apt_update_cache_valid_time`: [default: `3600`]: Number of seconds the apt cache stays valid
-* `apt_upgrade`: [default: `true`]: Whether or not to upgrade
+* `apt_upgrade`: [default: `true`]: Whether to upgrade
 * `apt_upgrade_type`: [default: `dist`]: If yes or safe, performs an aptitude safe-upgrade. If full, performs an aptitude full-upgrade. If dist, performs an apt-get dist-upgrade
 * `apt_upgrade_dpkg_options`: [default: `['force-confdef', 'force-confold']`]: Add `dpkg` options to `apt` command
-* `apt_clean`: [default: `true`]: Whether or not to clean
-* `apt_dpkg_configure`: [default: `false`]: Whether or not to run `dpkg --configure -a`
-* `apt_autoremove`: [default: `true`]: Whether or not to autoremove
+* `apt_clean`: [default: `true`]: Whether to clean
+* `apt_dpkg_configure`: [default: `false`]: Whether to run `dpkg --configure -a`
+* `apt_autoremove`: [default: `true`]: Whether to autoremove
 * `apt_install`: [default: `[]`]: Packages to install
 * `apt_install_state`: [default: `latest`]: State of packages to install (e.g. `present`)
 * `apt_remove`: [default: `[]`]: Packages to remove
-* `apt_remove_purge`: [default: `false`]: Whether or not to purge
+* `apt_remove_purge`: [default: `false`]: Whether to purge
 
 * `apt_etc_apt_apt_conf`: [default: `[]`]: List of lines to be added to `/etc/apt/apt.conf`
 * `apt_etc_apt_apt_conf_d_files_absent`: [default: `[]`]: List of files to be removed from `/etc/apt/apt.conf.d`
