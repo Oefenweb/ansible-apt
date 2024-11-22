@@ -17,6 +17,7 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_ubuntu_security_mirror`: [default: `https://security.ubuntu.com/ubuntu`]: The security-mirror to use
 * `apt_src_enable`: [default: `true`]: Whether to enable source code repositories
 * `apt_backports_enable`: [default: `true`]: Whether to enable the `backports` repository
+* `apt_ubuntu_restricted_enable`: [default: `true`]: Whether to enable the `restricted` repository
 * `apt_ubuntu_universe_enable`: [default: `true`]: Whether to enable the `universe` repository
 * `apt_ubuntu_multiverse_enable`: [default: `true`]: Whether to enable the `multiverse` repository
 * `apt_ubuntu_backports_enable`: [default: `true`]: Whether to enable the `backports` repository [deprecated in favour of `apt_backports_enable`]

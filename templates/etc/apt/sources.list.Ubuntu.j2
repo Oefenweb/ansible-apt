@@ -2,13 +2,13 @@
 
 # See https://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 # newer versions of the distribution.
-deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main restricted
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main restricted
+deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
 
 # # Major bug fix updates produced after the final release of the
 # # distribution.
-deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates main restricted
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates main restricted
+deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
 
 # # N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 # # team. Also, please note that software in universe WILL NOT receive any
@@ -38,12 +38,12 @@ deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-updates multivers
 # # Also, please note that software in backports WILL NOT receive any review
 # # or updates from the Ubuntu security team.
 {% if apt_backports_enable or apt_ubuntu_backports_enable | bool %}
-deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
+deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }} universe multiverse
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }}-backports main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }} universe multiverse
 {% endif %}
 
-deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main restricted
-{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main restricted
+deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
+{{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
 {% if apt_ubuntu_universe_enable | bool %}
 deb {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security universe
 {{ '# ' if not apt_src_enable else '' }}deb-src {{ apt_ubuntu_security_mirror }} {{ ansible_distribution_release }}-security universe
