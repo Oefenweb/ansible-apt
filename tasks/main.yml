@@ -72,7 +72,7 @@
 - name: update
   ansible.builtin.apt:
     update_cache: true
-    cache_valid_time: "{{ 0 if _apt_config_updated is defined and _apt_config_updated.changed else apt_update_cache_valid_time }}"
+    cache_valid_time: "{{ 0 if (_apt_config_updated is defined and _apt_config_updated.changed) else apt_update_cache_valid_time }}"
   when: apt_update | bool
   tags:
     - configuration

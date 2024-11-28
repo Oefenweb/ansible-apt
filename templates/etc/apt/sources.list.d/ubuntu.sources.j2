@@ -3,11 +3,11 @@
 Types: deb{{ (apt_src_enable | bool) | ternary(' deb-src', '') }}
 URIs: {{ apt_ubuntu_mirror }}
 Suites: {{ ansible_distribution_release }} {{ ansible_distribution_release }}-updates{{ (apt_ubuntu_backports_enable | bool) | ternary(' ' + ansible_distribution_release + '-backports', '') }}
-Components: {{ ' '.join(apt_ubuntu_sources_components).split() }}
+Components: {{ ' '.join(' '.join(apt_ubuntu_sources_components).split()) }}
 Signed-By: {{ apt_ubuntu_sources_signed_by }}
 
 Types: deb{{ (apt_src_enable | bool) | ternary(' deb-src', '') }}
 URIs: {{ apt_ubuntu_security_mirror }}
 Suites: {{ ansible_distribution_release }}-security
-Components: {{ ' '.join(apt_ubuntu_sources_components).split() }}
+Components: {{ ' '.join(' '.join(apt_ubuntu_sources_components).split()) }}
 Signed-By: {{ apt_ubuntu_sources_signed_by }}
