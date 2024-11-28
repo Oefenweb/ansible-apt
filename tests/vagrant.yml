@@ -7,6 +7,10 @@
     - ../../
   vars:
     apt_manage_sources_list: true
+
+    apt_ubuntu_restricted_enable: true
+    apt_ubuntu_universe_enable: true
+    apt_ubuntu_multiverse_enable: false
 #
 #    apt_ubuntu_partner_enable: true
 #    apt_ubuntu_extras_enable: true
