@@ -81,6 +81,7 @@
     - name: update | on configuration change
       ansible.builtin.apt:
         update_cache: true
+        cache_valid_time: 0
       when: false
             or (_update_config_1 is defined and (_update_config_1.changed))
             or (_update_config_2 is defined and (_update_config_2.changed))
