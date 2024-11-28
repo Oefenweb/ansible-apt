@@ -16,12 +16,24 @@
 
     - name: update configuration file - /etc/apt/sources.list
       ansible.builtin.template:
-        src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
-        dest: /etc/apt/sources.list
+        src: "{{ apt_sources_list_file.lstrip('/') }}.{{ ansible_distribution }}.j2"
+        dest: "{{ apt_sources_list_file }}"
         owner: root
         group: root
         mode: 0644
-      register: _apt_config_updated
+      register: _update_config_1
+
+    - name: update configuration file - /etc/apt/sources.list.d/ubuntu.sources
+      ansible.builtin.template:
+        src: "{{ apt_ubuntu_sources_file.lstrip('/') }}.j2"
+        dest: "{{ apt_ubuntu_sources_file }}"
+        owner: root
+        group: root
+        mode: 0644
+      register: _update_config_2
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_major_version is version('24', '>=')
 
 - name: update configuration file - /etc/apt/apt.conf
   ansible.builtin.template:
@@ -30,6 +42,7 @@
     owner: root
     group: root
     mode: 0644
+  register: _update_config_3
   tags:
     - configuration
     - apt
@@ -40,6 +53,7 @@
     path: "/etc/apt/apt.conf.d/{{ item }}"
     state: absent
   with_items: "{{ apt_etc_apt_apt_conf_d_files_absent }}"
+  register: _update_config_4
   tags:
     - configuration
     - apt
@@ -58,14 +72,25 @@
     - apt-update
 
 - name: update
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: "{{ 0 if _apt_config_updated is defined and _apt_config_updated.changed else apt_update_cache_valid_time }}"
   when: apt_update | bool
   tags:
     - configuration
     - apt
     - apt-update
+  block:
+    - name: update | on configuration change
+      ansible.builtin.apt:
+        update_cache: true
+      when: false
+            or (_update_config_1 is defined and (_update_config_1.changed))
+            or (_update_config_2 is defined and (_update_config_2.changed))
+            or (_update_config_3 is defined and (_update_config_3.changed))
+            or (_update_config_4 is defined and (_update_config_4.changed))
+
+    - name: update | on cache invalidation
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: "{{ apt_update_cache_valid_time }}"
 
 - name: dpkg --configure  # noqa command-instead-of-module
   ansible.builtin.command: >

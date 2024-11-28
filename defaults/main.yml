@@ -8,6 +8,7 @@ apt_backports_enable: true
 # Ubuntu specific
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
 apt_ubuntu_security_mirror: http://security.ubuntu.com/ubuntu
+apt_ubuntu_restricted_enable: true
 apt_ubuntu_universe_enable: true
 apt_ubuntu_multiverse_enable: true
 apt_ubuntu_backports_enable: true

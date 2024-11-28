@@ -4,5 +4,14 @@ apt_dependencies_pre:
   - software-properties-common
   - dirmngr
   - apt-transport-https
+apt_sources_list_file: /etc/apt/sources.list
+apt_ubuntu_sources_file: /etc/apt/sources.list.d/ubuntu.sources
 apt_apt_conf_file: /etc/apt/apt.conf
 apt_debian_security_mirror_suffix: "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '<=')) | ternary('/updates', '-security') }}"
+
+apt_ubuntu_sources_components:
+  - main
+  - "{{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}"
+  - "{{ (apt_ubuntu_universe_enable | bool) | ternary('universe', '') }}"
+  - "{{ (apt_ubuntu_multiverse_enable | bool) | ternary('multiverse', '') }}"
+apt_ubuntu_sources_signed_by: /usr/share/keyrings/ubuntu-archive-keyring.gpg
