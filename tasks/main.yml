@@ -78,7 +78,7 @@
     - apt
     - apt-update
   block:
-    - name: update
+    - name: update | on configuration change
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 0
@@ -88,7 +88,7 @@
             or (_update_config_3 is defined and (_update_config_3.changed))
             or (_update_config_4 is defined and (_update_config_4.changed))
 
-    - name: update
+    - name: update | on cache invalidation
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: "{{ apt_update_cache_valid_time }}"
