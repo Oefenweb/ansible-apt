@@ -14,14 +14,37 @@
         update_cache: true
         cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
 
-    - name: update configuration file - /etc/apt/sources.list
-      ansible.builtin.template:
-        src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
-        dest: /etc/apt/sources.list
-        owner: root
-        group: root
-        mode: 0644
-      register: _apt_config_updated
+    - name: not new ubuntu
+      when:
+        - not (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version is version('24', '>='))
+      block:
+        - name: update configuration file - /etc/apt/sources.list
+          ansible.builtin.template:
+            src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
+            dest: /etc/apt/sources.list
+            owner: root
+            group: root
+            mode: 0644
+          register: _apt_config_updated
+
+    - name: new ubuntu
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_major_version is version('24', '>=')
+      block:
+        - name: update configuration file - /etc/apt/sources.list.d/ubuntu.sources
+          ansible.builtin.template:
+            src: etc/apt/sources.list.d/ubuntu.sources.j2
+            dest: /etc/apt/sources.list.d/ubuntu.sources
+            owner: root
+            group: root
+            mode: 0644
+          register: _apt_config_updated
+
+        - name: remove configuration file - /etc/apt/sources.list
+          ansible.builtin.file:
+            path: /etc/apt/sources.list
+            state: absent
 
 - name: update configuration file - /etc/apt/apt.conf
   ansible.builtin.template:
