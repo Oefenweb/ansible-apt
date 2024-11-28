@@ -20,7 +20,7 @@
         dest: "{{ apt_sources_list_file }}"
         owner: root
         group: root
-        mode: 0644
+        mode: '0644'
       register: _update_config_1
 
     - name: update configuration file - /etc/apt/sources.list.d/ubuntu.sources
@@ -29,7 +29,7 @@
         dest: "{{ apt_ubuntu_sources_file }}"
         owner: root
         group: root
-        mode: 0644
+        mode: '0644'
       register: _update_config_2
       when:
         - ansible_distribution == 'Ubuntu'
@@ -41,7 +41,7 @@
     dest: "{{ apt_apt_conf_file }}"
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   register: _update_config_3
   tags:
     - configuration
@@ -65,7 +65,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   tags:
     - configuration
     - apt
