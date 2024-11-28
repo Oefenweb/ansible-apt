@@ -1,5 +1,8 @@
 {{ ansible_managed | comment }}
 
+{% if (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version is version('24', '>=')) %}
+# Ubuntu sources have moved to /etc/apt/sources.list.d/ubuntu.sources
+{% else %}
 # See https://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 # newer versions of the distribution.
 deb {{ apt_ubuntu_mirror }} {{ ansible_distribution_release }} main {{ (apt_ubuntu_restricted_enable | bool) | ternary('restricted', '') }}
@@ -65,4 +68,5 @@ deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partn
 {% if apt_ubuntu_extras_enable | bool and ansible_distribution_version is version('16.04', '<') %}
 deb http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main
 {{ '# ' if not apt_src_enable else '' }}deb-src http://extras.ubuntu.com/ubuntu {{ ansible_distribution_release }} main
+{% endif %}
 {% endif %}
