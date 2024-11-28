@@ -16,8 +16,8 @@
 
     - name: update configuration file - /etc/apt/sources.list
       ansible.builtin.template:
-        src: "etc/apt/sources.list.{{ ansible_distribution }}.j2"
-        dest: /etc/apt/sources.list
+        src: "{{ apt_sources_list_file.lstrip('/') }}.{{ ansible_distribution }}.j2"
+        dest: "{{ apt_sources_list_file }}"
         owner: root
         group: root
         mode: 0644
@@ -25,8 +25,8 @@
 
     - name: update configuration file - /etc/apt/sources.list.d/ubuntu.sources
       ansible.builtin.template:
-        src: etc/apt/sources.list.d/ubuntu.sources.j2
-        dest: /etc/apt/sources.list.d/ubuntu.sources
+        src: "{{ apt_ubuntu_sources_file.lstrip('/') }}.j2"
+        dest: "{{ apt_ubuntu_sources_file }}"
         owner: root
         group: root
         mode: 0644
@@ -81,7 +81,6 @@
     - name: update | on configuration change
       ansible.builtin.apt:
         update_cache: true
-        cache_valid_time: 0
       when: false
             or (_update_config_1 is defined and (_update_config_1.changed))
             or (_update_config_2 is defined and (_update_config_2.changed))

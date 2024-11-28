@@ -1,7 +1,7 @@
 {{ ansible_managed | comment }}
 
 {% if (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version is version('24', '>=')) %}
-# Ubuntu sources have moved to /etc/apt/sources.list.d/ubuntu.sources
+# Ubuntu sources have moved to {{ apt_ubuntu_sources_file }}
 {% else %}
 # See https://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
 # newer versions of the distribution.
