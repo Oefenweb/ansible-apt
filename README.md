@@ -17,12 +17,16 @@ Manage packages and up(date|grade)s in Debian-like systems.
 * `apt_ubuntu_security_mirror`: [default: `https://security.ubuntu.com/ubuntu`]: The security-mirror to use
 * `apt_src_enable`: [default: `true`]: Whether to enable source code repositories
 * `apt_backports_enable`: [default: `true`]: Whether to enable the `backports` repository
+* `apt_ubuntu_distribution_release`: [default: `{{ ansible_distribution_release }}`]: The distribution release to use. Make sure this value corresponds with the `apt_ubuntu_distribution_major_version` value. For example: `noble`
+* `apt_ubuntu_distribution_major_version`: [default: `{{ ansible_distribution_major_version }}`]: The distribution major version to use. Make sure this value corresponds with the `apt_ubuntu_distribution_release` value. For example: `24`
 * `apt_ubuntu_restricted_enable`: [default: `true`]: Whether to enable the `restricted` repository
 * `apt_ubuntu_universe_enable`: [default: `true`]: Whether to enable the `universe` repository
 * `apt_ubuntu_multiverse_enable`: [default: `true`]: Whether to enable the `multiverse` repository
 * `apt_ubuntu_backports_enable`: [default: `true`]: Whether to enable the `backports` repository [deprecated in favour of `apt_backports_enable`]
 * `apt_ubuntu_partner_enable`: [default: `false`]: Whether to enable the `partner` repository
 * `apt_ubuntu_extras_enable`: [default: `false`]: Whether to enable the `extras` repository (only applies to < 16.04)
+* `apt_debian_distribution_release`: [default: `{{ ansible_distribution_release }}`]: The distribution release to use. Make sure this value corresponds with the `apt_debian_distribution_major_version` value. For example: `bookworm`
+* `apt_debian_distribution_major_version`: [default: `{{ ansible_distribution_major_version }}`]: The distribution major version to use. Make sure this value corresponds with the `apt_debian_distribution_release` value. For example: `12`
 * `apt_debian_mirror`: [default: `https://deb.debian.org/debian/`]: The mirror to use
 * `apt_debian_security_mirror`: [default: `https://security.debian.org/`]: The security-mirror to use
 * `apt_debian_contrib_nonfree_enable`: [default: `false`]: Whether to enable the `contrib` `non-free` `non-free-firmware` repository

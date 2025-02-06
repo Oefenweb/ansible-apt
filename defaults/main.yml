@@ -6,6 +6,8 @@ apt_src_enable: true
 apt_backports_enable: true
 
 # Ubuntu specific
+apt_ubuntu_distribution_release: "{{ ansible_distribution_release }}"
+apt_ubuntu_distribution_major_version: "{{ ansible_distribution_major_version }}"
 apt_ubuntu_mirror: mirror://mirrors.ubuntu.com/mirrors.txt
 apt_ubuntu_security_mirror: http://security.ubuntu.com/ubuntu
 apt_ubuntu_restricted_enable: true
@@ -15,12 +17,14 @@ apt_ubuntu_backports_enable: true
 apt_ubuntu_partner_enable: false
 apt_ubuntu_extras_enable: false
 # Debian specific
+apt_debian_distribution_release: "{{ ansible_distribution_release }}"
+apt_debian_distribution_major_version: "{{ ansible_distribution_major_version }}"
 apt_debian_mirror: https://deb.debian.org/debian/
-apt_debian_security_mirror: "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '<=')) | ternary('https://security.debian.org/', 'https://security.debian.org/debian-security') }}"
+apt_debian_security_mirror: "{{ (ansible_distribution == 'Debian' and apt_debian_distribution_major_version is version('10', '<=')) | ternary('https://security.debian.org/', 'https://security.debian.org/debian-security') }}"
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
-  - "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('8', '<')) | ternary('python-apt', 'python3-apt') }}"
+  - "{{ (ansible_distribution == 'Debian' and apt_debian_distribution_major_version is version('8', '<')) | ternary('python-apt', 'python3-apt') }}"
   - aptitude
 
 apt_update: true
