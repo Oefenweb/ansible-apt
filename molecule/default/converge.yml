@@ -3,4 +3,6 @@
   hosts: all
   become: true
   roles:
-    - ../../../
+    - role: ../../../
+      vars:
+        apt_manage_sources_list: true
