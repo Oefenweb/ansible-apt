@@ -16,7 +16,7 @@
 
     - name: update configuration file - /etc/apt/sources.list
       ansible.builtin.template:
-        src: "{{ apt_sources_list_file.lstrip('/') }}.{{ ansible_distribution }}.j2"
+        src: "{{ apt_sources_list_file.lstrip('/') }}.{{ ansible_facts['distribution'] }}.j2"
         dest: "{{ apt_sources_list_file }}"
         owner: root
         group: root
@@ -32,8 +32,8 @@
         mode: '0644'
       register: _update_config_2
       when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_major_version is version('24', '>=')
+        - ansible_facts['distribution'] == 'Ubuntu'
+        - ansible_facts['distribution_major_version'] is version('24', '>=')
 
 - name: update configuration file - /etc/apt/apt.conf
   ansible.builtin.template:

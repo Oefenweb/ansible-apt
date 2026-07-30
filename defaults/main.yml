@@ -16,11 +16,11 @@ apt_ubuntu_partner_enable: false
 apt_ubuntu_extras_enable: false
 # Debian specific
 apt_debian_mirror: https://deb.debian.org/debian/
-apt_debian_security_mirror: "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '<=')) | ternary('https://security.debian.org/', 'https://security.debian.org/debian-security') }}"
+apt_debian_security_mirror: "{{ (ansible_facts['distribution'] == 'Debian' and ansible_facts['distribution_major_version'] is version('10', '<=')) | ternary('https://security.debian.org/', 'https://security.debian.org/debian-security') }}"
 apt_debian_contrib_nonfree_enable: false
 
 apt_dependencies:
-  - "{{ (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('8', '<')) | ternary('python-apt', 'python3-apt') }}"
+  - "{{ (ansible_facts['distribution'] == 'Debian' and ansible_facts['distribution_major_version'] is version('8', '<')) | ternary('python-apt', 'python3-apt') }}"
   - aptitude
 
 apt_update: true
